@@ -447,23 +447,78 @@
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="newsletter" id="contact">
+    <!-- Comment & Rating Section -->
+    <section class="comment-section" id="contact">
         <div class="container">
-            <h2 class="newsletter-title">اشترك في نشرتنا البريدية</h2>
-            <p>احصل على آخر العروض والمنتجات الجديدة</p>
-            <form class="newsletter-form" id="newsletterForm">
-                <input 
-                    type="email" 
-                    class="newsletter-input" 
-                    placeholder="أدخل بريدك الإلكتروني"
-                    required
-                    id="emailInput"
-                >
-                <button type="submit" class="btn btn-primary">
-                    <span>اشترك الآن</span>
-                </button>
-            </form>
+            <h2 class="section-title" style="color: #fff;">شاركنا رأيك</h2>
+            <p class="comment-section-subtitle">تقييمك وتعليقك يساعدنا على تقديم الأفضل لكم</p>
+            <div class="comment-form-wrapper">
+                <form class="comment-form" id="commentForm">
+                    <!-- Name Field -->
+                    <div class="form-group">
+                        <label for="commentName" class="form-label">
+                            <i class="fas fa-user"></i>
+                            الاسم
+                        </label>
+                        <input
+                            type="text"
+                            id="commentName"
+                            class="form-input"
+                            placeholder="أدخل اسمك"
+                            required
+                        >
+                    </div>
+
+                    <!-- Star Rating -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-star"></i>
+                            التقييم
+                        </label>
+                        <div class="star-rating" id="starRating">
+                            <input type="radio" name="rating" id="star5" value="5">
+                            <label for="star5" title="ممتاز"><i class="fas fa-star"></i></label>
+                            <input type="radio" name="rating" id="star4" value="4">
+                            <label for="star4" title="جيد جداً"><i class="fas fa-star"></i></label>
+                            <input type="radio" name="rating" id="star3" value="3">
+                            <label for="star3" title="جيد"><i class="fas fa-star"></i></label>
+                            <input type="radio" name="rating" id="star2" value="2">
+                            <label for="star2" title="مقبول"><i class="fas fa-star"></i></label>
+                            <input type="radio" name="rating" id="star1" value="1">
+                            <label for="star1" title="ضعيف"><i class="fas fa-star"></i></label>
+                        </div>
+                        <span class="rating-text" id="ratingText">اختر تقييمك</span>
+                    </div>
+
+                    <!-- Comment Field -->
+                    <div class="form-group">
+                        <label for="commentText" class="form-label">
+                            <i class="fas fa-comment-alt"></i>
+                            التعليق
+                        </label>
+                        <textarea
+                            id="commentText"
+                            class="form-input form-textarea"
+                            placeholder="اكتب تعليقك هنا..."
+                            rows="4"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-primary comment-submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>إرسال التعليق</span>
+                    </button>
+                </form>
+
+                <!-- Success Message -->
+                <div class="comment-success" id="commentSuccess" style="display:none;">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>شكراً لتعليقك!</h3>
+                    <p>تم إرسال تقييمك بنجاح، نقدر رأيك كثيراً.</p>
+                </div>
+            </div>
         </div>
     </section>
 

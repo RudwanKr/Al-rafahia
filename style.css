@@ -894,36 +894,170 @@ p {
     color: rgba(255, 255, 255, 0.5);
 }
 
-/* === NEWSLETTER === */
-.newsletter {
+/* === COMMENT & RATING SECTION === */
+.comment-section {
     background: var(--gradient-primary);
-    padding: var(--spacing-2xl) 0;
+    padding: var(--spacing-3xl) 0;
     text-align: center;
     color: var(--color-white);
 }
 
-.newsletter-title {
-    color: var(--color-white);
-    margin-bottom: var(--spacing-md);
+.comment-section-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: var(--spacing-xl);
+    font-size: 1.1rem;
 }
 
-.newsletter-form {
-    display: flex;
-    gap: var(--spacing-md);
-    max-width: 500px;
+.comment-form-wrapper {
+    max-width: 600px;
     margin: 0 auto;
-    flex-wrap: wrap;
-    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
-.newsletter-input {
-    flex: 1;
-    min-width: 250px;
-    padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: var(--radius-full);
-    border: none;
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    text-align: right;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-label {
+    color: var(--color-dark);
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-label i {
+    color: var(--color-tertiary);
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    border-radius: var(--radius-md);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--color-white);
+    font-family: var(--font-body);
     font-size: 1rem;
     outline: none;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+    resize: none;
+    direction: rtl;
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.form-input:focus {
+    border-color: var(--color-tertiary);
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* === STAR RATING === */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    margin-bottom: 0.35rem;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.star-rating label:hover,
+.star-rating label:hover~label,
+.star-rating input[type="radio"]:checked~label {
+    color: var(--color-tertiary);
+}
+
+.star-rating label:hover {
+    transform: scale(1.2);
+}
+
+.rating-text {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9rem;
+    display: block;
+}
+
+.comment-submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    background: var(--color-white);
+    color: var(--color-primary);
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+    border: none;
+    cursor: pointer;
+}
+
+.comment-submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+    background: var(--color-tertiary);
+    color: var(--color-dark);
+}
+
+/* Success state */
+.comment-success {
+    text-align: center;
+    color: var(--color-white);
+    padding: var(--spacing-xl);
+    animation: fadeInUp 0.5s ease;
+}
+
+.comment-success i {
+    font-size: 4rem;
+    color: var(--color-tertiary);
+    margin-bottom: var(--spacing-md);
+    display: block;
+}
+
+.comment-success h3 {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.comment-success p {
+    opacity: 0.85;
 }
 
 /* === RESPONSIVE === */
@@ -971,12 +1105,12 @@ p {
         padding: var(--spacing-2xl) 0;
     }
 
-    .newsletter-form {
-        flex-direction: column;
+    .comment-form-wrapper {
+        padding: var(--spacing-lg);
     }
 
-    .newsletter-input {
-        width: 100%;
+    .star-rating label {
+        font-size: 1.6rem;
     }
 }
 

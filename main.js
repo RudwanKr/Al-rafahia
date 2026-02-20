@@ -101,32 +101,47 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(element);
     });
     
-    // ====== NEWSLETTER FORM ======
-    const newsletterForm = document.getElementById('newsletterForm');
-    const emailInput = document.getElementById('emailInput');
-    
-    newsletterForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const email = emailInput.value.trim();
-        
-        if (email && isValidEmail(email)) {
-            // Show success message
-            showMessage('شكراً لاشتراكك! سنرسل لك آخر العروض قريباً.', 'success');
-            
-            // Clear input
-            emailInput.value = '';
-        } else {
-            showMessage('الرجاء إدخال بريد إلكتروني صحيح', 'error');
-        }
+    // ====== COMMENT & RATING FORM ======
+    const commentForm = document.getElementById('commentForm');
+    const commentSuccess = document.getElementById('commentSuccess');
+    const ratingText = document.getElementById('ratingText');
+    const ratingLabels = ['', 'ضعيف', 'مقبول', 'جيد', 'جيد جداً', 'ممتاز'];
+
+    // Update rating text on star selection
+    const ratingInputs = document.querySelectorAll('input[name="rating"]');
+    ratingInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            ratingText.textContent = `تقييمك: ${ratingLabels[this.value]} (${this.value}/5)`;
+        });
     });
-    
-    // Email validation
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+
+    if (commentForm) {
+        commentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('commentName').value.trim();
+            const comment = document.getElementById('commentText').value.trim();
+            const selectedRating = document.querySelector('input[name="rating"]:checked');
+
+            if (!name) {
+                showMessage('الرجاء إدخال اسمك', 'error');
+                return;
+            }
+            if (!selectedRating) {
+                showMessage('الرجاء اختيار تقييمك', 'error');
+                return;
+            }
+            if (!comment) {
+                showMessage('الرجاء كتابة تعليقك', 'error');
+                return;
+            }
+
+            // Hide form, show success
+            commentForm.style.display = 'none';
+            commentSuccess.style.display = 'block';
+        });
     }
-    
+
     // Show message function
     function showMessage(message, type) {
         // Create message element

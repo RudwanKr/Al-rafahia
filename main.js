@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
   // ==============================
   // HEADER & NAVIGATION
   // ==============================
@@ -56,17 +55,14 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", function () {
     let current = "";
     sections.forEach((section) => {
-      if (
-        pageYOffset >=
-        section.offsetTop - header.offsetHeight - 100
-      ) {
+      if (pageYOffset >= section.offsetTop - header.offsetHeight - 100) {
         current = section.getAttribute("id");
       }
     });
     navLinks.forEach((link) => {
       link.classList.toggle(
         "active",
-        link.getAttribute("href") === `#${current}`
+        link.getAttribute("href") === `#${current}`,
       );
     });
   });
@@ -83,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     },
-    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
   );
 
   document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
@@ -93,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ==============================
 
   const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbyyrJRFrtz3fH9V2zM6LpUThDsCQn5dOC2ZCF1utVlvEYtYjriFk4x7EML3e6AsJ2ZaiA/exec";
+    "https://script.google.com/macros/s/AKfycbyxFGhAQhbDCwU9oIBb5SbY7pjXw7EIp6q2zNfMt_QQTkJPJb8l0wqJALiom4yuc3_zZg/exec";
   const REVIEWS_PER_PAGE = 6;
   const ratingLabels = ["", "ضعيف", "مقبول", "جيد", "جيد جداً", "ممتاز"];
   const avatarColors = [
@@ -157,8 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (avgScoreEl) avgScoreEl.textContent = avg.toFixed(1);
     if (avgStarsEl) avgStarsEl.innerHTML = starsHTML(Math.round(avg));
-    if (totalCountEl)
-      totalCountEl.textContent = `${allReviews.length} تقييم`;
+    if (totalCountEl) totalCountEl.textContent = `${allReviews.length} تقييم`;
 
     if (!barsEl) return;
     barsEl.innerHTML = "";
@@ -188,8 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ---- Render Review Card ----
   function reviewCardHTML(review, idx) {
-    const colorIdx =
-      (review.name.charCodeAt(0) + idx) % avatarColors.length;
+    const colorIdx = (review.name.charCodeAt(0) + idx) % avatarColors.length;
     return `
       <div class="review-card" style="animation-delay:${(idx % REVIEWS_PER_PAGE) * 0.07}s">
         <div class="review-card-header">
@@ -248,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
           renderReviews();
           scrollToReviews();
         }
-      }
+      },
     );
 
     for (let p = 1; p <= totalPages; p++) {
@@ -274,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
           currentPage = pg;
           renderReviews();
           scrollToReviews();
-        })(p)
+        })(p),
       );
     }
 
@@ -288,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
           renderReviews();
           scrollToReviews();
         }
-      }
+      },
     );
   }
 
@@ -448,6 +442,19 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.style.transition = "opacity 0.5s ease";
       document.body.style.opacity = "1";
     }, 100);
+  });
+
+  // ==============================
+  // PRODUCT CARD CLICK
+  // ==============================
+
+  document.querySelectorAll(".product-card").forEach((card) => {
+    card.addEventListener("click", function () {
+      const url = this.dataset.url;
+      if (url) {
+        window.open(url, "_blank");
+      }
+    });
   });
 
   console.log("🧸 الرفاهية للألعاب - Landing Page Loaded Successfully!");
